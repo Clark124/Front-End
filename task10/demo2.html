@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Form</title>
+    <style>
+        body {
+            font-family: arial;
+        }
+        .layout{
+            margin: 0 auto;
+            width: 600px;
+        }
+        .card{
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            padding-bottom: 16px;
+        }
+
+        .card h2{
+            padding: 15px 16px;
+            background-color: #009688;
+            color: #fff;
+        }
+        .card form{
+            margin: 16px;
+        }
+        .card form>div{
+            margin-top: 16px;
+            overflow: auto;
+        }
+        .card form label{
+            color: #757575;
+            vertical-align: middle;
+        }
+        .card input[type=text],.card textarea{
+            padding: 8px;
+            display: block;
+            border: none;
+            border-bottom: 1px solid #808080;
+            width: 100%;
+        }
+        .card .food,.card .sex{
+            width: 50%;
+            float: left;
+            line-height: 1.4;
+            
+        }
+        .card input[type=submit]{
+            padding: 8px 16px;
+            color: #fff;
+            background-color: #009688;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="layout">
+        <div class="card">
+            <h2>信息收集表</h2>
+            <form action="#" method="post">
+                <div class="username">
+                    <label for="username">姓名</label>
+                    <input type="text" name="username" id="username"/>
+                </div>
+                <div class="qq">
+                    <label for="qq">QQ</label>
+                    <input type="text" name="qq" id="qq"/>
+                </div>
+                <div class="content">
+                    <label for="content">要说的话</label>
+                    <textarea name="content" id="content" cols="30px" rows="4px" ></textarea>
+                </div>
+                <div>
+                    <div class="food">
+                        <input type="checkbox" name="food" value="Milk" id="milk" checked="checked"/>
+                        <label for="milk">Milk</label>
+                        <br/>
+                        <input type="checkbox" name="food" value="Sugar" id="sugar"/>
+                        <label for="sugar">Sugar</label>
+                        <br/>
+                        <input type="checkbox" name="food" value="Lemon" id="lemon"/>
+                        <label for="lemon">Lemon</label>
+                    </div>
+                    <div class="sex">
+                        <input type="radio" name="sex" value="Male" id="male"/>
+                        <label for="male">Male</label>
+                        <br/>
+                        <input type="radio" name="sex" value="Female" id="female" checked="checked"/>
+                        <label for="female">Female</label>
+                    </div>
+                </div>
+                <div>
+                    <input type="submit" value="提交"/>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</body>
+</html>
