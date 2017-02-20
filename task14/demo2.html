@@ -173,13 +173,16 @@
             left: -47px;
             top: 3px;
         }
-        #extra h3:after{
+        .active>div p{
+            position: relative;
+        }
+        .active>div p:before{
             content: "+";
             color: #000;
             font-size: 14px;
-            position: relative;
-            left: -115px;
-            top: -1px
+            position: absolute;
+            left: -61px;
+            top: -31px
         }
         .active>div{
             padding-left: 40px;
@@ -213,11 +216,14 @@
             left: -47px;
             top: 3px;
         }
+        .skill ul li p{
+            position: relative;
+        }
         .skill ul li p:after{
             content: "+";
             color: #000;
             font-size: 14px;
-            position: relative;
+            position: absolute;
             left: -43px;
             top: -20px;
         }
