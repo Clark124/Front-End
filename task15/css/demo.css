@@ -28,6 +28,7 @@ a{
     width: 100%;
     background: rgba(0, 0, 0, 0.30);
     position: fixed;
+    z-index: 1030;
     padding: 25px 0
 }
 .navbar .logo{
@@ -239,9 +240,9 @@ header .intro-text a{
     display: inline-block;
     position: absolute;
     left: 42%;
-    /*width: 170px;*/
-    /*height: 170px;*/
-    border-radius: 85px;
+    width: 170px;
+    height: 170px;
+    border-radius: 93px;
     border: 7px solid #f1f1f1
 }
 #about .develop-img img{
@@ -251,7 +252,7 @@ header .intro-text a{
 }
 #team{
     background: #f7f7f7;
-    padding: 150px 0;
+    padding: 180px 0;
 }
 #team .row-1{
     text-align: center;
