@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>tab</title>
+    <style>
+        ul,li{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        *{
+            box-sizing: border-box;
+        }
+        .container{
+            width: 600px;
+            margin: 10px 30px;
+            border: 1px solid #cccccc;
+            padding: 5px;
+
+        }
+        .tab{
+            border: 1px solid #cccccc;
+        }
+        .clearfix:after{
+            content:"";
+            display: block;
+            clear: both
+        }
+        .tab-head{
+            border-bottom: 1px solid #cccccc;
+        }
+        .tab-head>li{
+            float: left;
+            cursor: pointer;
+            padding: 5px 80px;
+            border-right: 1px solid #cccccc;
+        }
+        .tab-head .select{
+            background: #c5c5c5;
+        }
+        .tab-head>li:nth-child(3){
+            border-right: none;
+            width: 194.90px;
+        }
+        .tab-container{
+            padding: 20px;
+            height: 200px;
+        }
+        .tab-container>li{
+            display: none;
+        }
+        .tab-container .select{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="tab">
+            <ul class="tab-head clearfix">
+                <li class="select">tab1</li>
+                <li>tab2</li>
+                <li>tab3</li>
+            </ul>
+            <ul class="tab-container">
+                <li class="select">内容1</li>
+                <li>内容2</li>
+                <li>内容3</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        function $(ele){
+            return document.querySelector(ele);
+        }
+        function $$(ele){
+            return document.querySelectorAll(ele);
+        }
+        var headArrLi = $$(".tab-head>li");
+        var ctArrLi = $$(".tab-container>li");
+        $(".tab-head").addEventListener("click",function(e){
+            if(e.target.tagName.toLowerCase()==="li"){
+                for(var i=0;i<headArrLi.length;i++){
+                    headArrLi[i].classList.remove("select");
+                }
+                e.target.classList.add("select");
+                var index = [].indexOf.call(headArrLi, e.target);
+                for(var j=0;j<ctArrLi.length;j++){
+                    ctArrLi[j].classList.remove("select");
+                }
+                ctArrLi[index].classList.add("select");
+            }
+
+        })
+    </script>
+</body>
+</html>

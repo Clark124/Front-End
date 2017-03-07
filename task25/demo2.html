@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        a{
+            text-decoration: none;
+            color: #666666;
+        }
+        .btn{
+            margin: 10px;
+            padding: 3px 6px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+        .box{
+            border: 1px solid #cccccc;
+            border-radius: 3px;
+            background: #fff;
+            width: 400px;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform:translate(-50%,-50%);
+            box-shadow: 3px 3px 3px #ccc;
+            display: none;
+        }
+        .header{
+            position: relative;
+            padding: 8px;
+            border-bottom: 1px solid #cccccc;
+        }
+        .header h3{
+            font-size: 16px;
+        }
+        .header a{
+            font-size: 18px;
+        }
+        .header .close{
+            position: absolute;
+            left: 374px;
+            top: 6px;
+        }
+        .content{
+            padding: 20px 8px;
+            line-height: 1.5;
+            border-bottom: 1px solid #cccccc;
+        }
+        .footer{
+            padding: 10px 8px;
+        }
+        .footer:after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .footer div{
+            float: right;
+        }
+
+    </style>
+</head>
+<body>
+    <button class="btn">点我</button>
+    <div class="box">
+        <div class="header">
+           <h3>我是标题</h3>
+            <a href="#" class="close">×</a>
+        </div>
+        <div class="content">
+            <p>我是内容</p>
+            <p>我是内容</p>
+        </div>
+        <div class="footer">
+            <div>
+                <a href="#" class="confirm">确定</a>
+                <a href="#" class="cancel">取消</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        function $(ele){
+            return document.querySelector(ele);
+        }
+        function $$(ele){
+            return document.querySelectorAll(ele);
+        }
+        var model = $(".box");
+        $(".btn").addEventListener("click", function(e){
+            e.stopPropagation();
+            model.style.display = "block";
+            document.body.style.backgroundColor = "#666"
+        });
+        window.addEventListener("click",function(){
+            model.style.display = "none";
+            document.body.style.backgroundColor = "#fff"
+        });
+        model.addEventListener("click",function(e){
+            e.stopPropagation();
+        });
+        $(".close").addEventListener("click",function(e){
+            model.style.display = "none";
+            document.body.style.backgroundColor = "#fff"
+        });
+        $(".cancel").addEventListener("click",function(){
+            model.style.display = "none";
+            document.body.style.backgroundColor = "#fff"
+        })
+    </script>
+</body>
+</html>
