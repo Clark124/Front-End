@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body{
+            margin: 0;
+        }
+         input{
+            margin: 20px;
+            width: 260px;
+        }
+    </style>
+
+</head>
+<body>
+        <input type="text" placeholder="http://www.b.clark.com:8080/b.html"/>
+        <script>
+           document.querySelector("input").addEventListener("input",function(){
+               window.parent.document.querySelector("input").value = this.value;
+           });
+            document.domain = "clark.com"
+        </script>
+</body>
+</html>

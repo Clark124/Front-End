@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>jsonp</title>
+</head>
+<body>
+    <div class="container">
+        <ul id="news">
+            <li>习近平：加快建立军民融合创新体系 为我军建设提供强大科技支撑</li>
+            <li> 3400名中国游客拒下邮轮震惊韩国 韩媒担忧中国报复成现实</li>
+            <li>60岁老人海边身亡 留遗书称被保健品"坑死" </li>
+        </ul>
+        <button id="btn">换一组</button>
+    </div>
+    <script>
+        var btn = document.getElementById("btn");
+        var newsList = document.getElementById("news");
+        btn.addEventListener("click",function(){
+            var script = document.createElement("script");
+            script.src = "http://www.b.clark.com:8080/getNewsJsonp?callback=appendHtml";
+            document.head.appendChild(script);
+            document.head.removeChild(script);
+        });
+        function appendHtml(news){
+            var html = "";
+            for(var i=0;i< news.length;i++){
+                html += "<li>"+news[i]+"</li>";
+            }
+            console.log(html);
+            newsList.innerHTML = html;
+        }
+
+    </script>
+
+
+
+</body>
+</html>

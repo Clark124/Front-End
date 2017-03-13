@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .ct{
+            width: 910px;
+            margin: auto;
+        }
+        .main{
+            float: left;
+            width: 450px;
+            height: 300px;
+            border: 1px solid #ccc;
+        }
+        .main input{
+            margin: 20px;
+            width: 260px;
+        }
+
+        iframe{
+            width: 450px;
+            height: 300px;
+            border: 1px dashed #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="ct">
+        <h1>使用降域实现跨域</h1>
+        <div class="main">
+            <input type="text" placeholder="http://www.a.clark.com:8080/a.html"/>
+        </div>
+        <iframe src="http://www.b.clark.com:8080/b.html" frameborder="0"></iframe>
+    </div>
+    <script>
+        document.querySelector(".main input").addEventListener("input",function(){
+            window.frames[0].document.querySelector("input").value = this.value;
+        });
+        document.domain = "clark.com"
+    </script>
+</body>
+</html>
