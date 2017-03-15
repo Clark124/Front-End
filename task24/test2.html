@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        /*.ct{*/
+            /*list-style: none;*/
+        /*}*/
+        /*.ct li{*/
+
+            /*cursor: pointer;*/
+        /*}*/
+        /*.img-preview{*/
+            /*height: 200px;*/
+            /*width: 200px;*/
+            /*border: 1px solid red;*/
+        /*}*/
+        /*.img-preview img{*/
+            /*height: 200px;*/
+            /*width: 200px;*/
+        /*}*/
+    </style>
+</head>
+<body>
+    <ul class="ct">
+        <li data-img="http://i.meizitu.net/2013/11/2def2712a583d3d3a8be403f71fe1162a50c7cec5fd37-Gsz2gi_fw580.jpg">鼠标放置查看图片1</li>
+        <li data-img="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488826053605&di=f057bcdebe61a27756beb972f18906a1&imgtype=0&src=http%3A%2F%2Fh.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Ff31fbe096b63f62494424a8b8544ebf81a4ca31f.jpg">鼠标放置查看图片2</li>
+        <li data-img="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488826183383&di=fd22684f55539a457186760279a5f3a0&imgtype=0&src=http%3A%2F%2Fa.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Fd833c895d143ad4bb1adf9c080025aafa40f062a.jpg">鼠标放置查看图片3</li>
+    </ul>
+    <div class="img-preview"></div>
+    <script>
+        function $(ele){
+            return document.querySelector(ele);
+        }
+        function $$(ele){
+            return document.querySelectorAll(ele)
+        }
+
+        $(".ct").addEventListener("mouseover",function(e){
+            if(e.target.tagName.toLowerCase()==="li"){
+                var imgSrc = e.target.getAttribute("data-img");
+                var imgEle = document.createElement("img");
+                imgEle.setAttribute("src",imgSrc);
+                $(".img-preview").appendChild(imgEle);
+            }
+        });
+        $(".ct").addEventListener("mouseout",function(e){
+            if(e.target.tagName.toLowerCase()==="li"){
+                $(".img-preview").innerHTML="";
+            }
+        })
+    </script>
+</body>
+</html>

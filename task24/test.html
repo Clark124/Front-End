@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<ul class="ct">
+    <li>这里是</li>
+    <li>饥人谷</li>
+    <li>任务班</li>
+</ul>
+<input class="ipt-add-content" placeholder="添加内容"/>
+<button id="btn-add-start">开头添加</button>
+<button id="btn-add-end">结尾添加</button>
+<script>
+    $(".ct").addEventListener("click",function(e){
+        if(e.target.tagName.toLowerCase()=="li"){
+            console.log(e.target.innerText);
+        }
+    });
+    $("#btn-add-start").addEventListener("click",function(){
+       var addLi = document.createElement("li");
+       var addContent = $(".ipt-add-content").value;
+       var contentNode = document.createTextNode(addContent);
+       if(addContent!==""){
+            addLi.appendChild(contentNode);
+            $(".ct").insertBefore(addLi,$$(".ct li")[0]);
+        }
+    });
+    $("#btn-add-end").addEventListener("click", function(){
+        var addLi = document.createElement("li");
+        var addContent = $(".ipt-add-content").value;
+        var contentNode = document.createTextNode(addContent);
+        if(addContent!==""){
+            addLi.appendChild(contentNode);
+            $(".ct").appendChild(addLi);
+        }
+    });
+
+    function $(ele){
+        return document.querySelector(ele);
+    }
+    function $$(ele){
+        return document.querySelectorAll(ele)
+    }
+
+</script>
+</body>
+</html>

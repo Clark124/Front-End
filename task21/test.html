@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div style="width:100px;height:100px; background: #2e1e7a">123</div>
+<script>
+//    function selectFrom(lowerValue,upperValue){
+//        var choices = upperValue-lowerValue;
+//        return Math.floor(Math.random()*choices+lowerValue);
+//    }
+//    var obj = {};
+//    for(var i=0;i<10000;i++){
+//        var num = selectFrom(1,10);
+//        if(obj[num]!==undefined){
+//            obj[num]++
+//        }else{
+//            obj[num]=1
+//        }
+//    }
+//    console.log(obj);//{1: 1078, 2: 1152, 3: 1137, 4: 1113, 5: 1075, 6: 1144, 7: 1099, 8: 1066, 9: 1136}
+//    function selectFrom(lowerValue,upperValue){
+//        var choices = upperValue-lowerValue+1;
+//        return Math.floor(Math.random()*choices+lowerValue);
+//    }
+//    var obj = {};
+//    for(var i=0;i<10000;i++){
+//        var num = selectFrom(1,10);
+//        if(obj[num]!==undefined){
+//            obj[num]++
+//        }else{
+//            obj[num]=1
+//        }
+//    }
+//    console.log(obj);//Object {1: 988, 2: 1013, 3: 985, 4: 966, 5: 993, 6: 1021, 7: 986, 8: 1031, 9: 1013, 10: 1004}
+
+//function getRandStr(len){
+//    var dict = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+//    var str="";
+//    for(var i=0;i<len;i++){
+//         str += dict[Math.floor(Math.random()*62)];
+//    }
+//    return str
+//}
+//var str = getRandStr(10); //eZGrosrfjl
+//console.log(str);
+
+//function getRandIP(){
+//    var arr = [];
+//    for(var i=0;i<4;i++){
+//        var num =  Math.floor(Math.random()*256);
+//        arr.push(num);
+//    }
+//    return arr.join(".")
+//}
+//var ip = getRandIP();
+//console.log(ip) ;// 0.135.116.184
+//function getRandStr(len){
+//    var dict = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+//    var str="";
+//    for(var i=0;i<len;i++){
+//         str += dict[Math.floor(Math.random()*62)];
+//    }
+//    return str
+//
+//function getRandColor(){
+//    var colorNum = "0123456789";
+//    var letter = "abcdef";
+//    var colorStr = "#";
+//    for(var i=0;i<3;i++){
+//        var str = colorNum[Math.floor(Math.random()*10)]+letter[Math.floor(Math.random()*6)];
+//        colorStr += str;
+//    }
+//    return colorStr
+//}
+//var color = getRandColor();
+//console.log(color); // #3e2f1b
+
+
+//function squareArr(arr){
+////    var num ;
+//    for(var i=0;i<arr.length;i++){
+//        arr[i] = arr[i]*arr[i];
+////        arr.splice(i,1,num);
+//    }
+//}
+//var arr = [7, 4, 5];
+//squareArr(arr);
+//console.log(arr); // [9, 16, 25]
+
+
+//function filterPositive(arr){
+//    var newArr = [];
+//    for(var i=0;i<arr.length;i++){
+//        if(typeof arr[i]==="number"&& arr[i]>0){
+//            newArr.push(arr[i]);
+//        }
+//    }
+//    return newArr;
+//}
+//var arr = [3, -1,  2,  '饥人谷', true];
+//var newArr = filterPositive(arr);
+//console.log(newArr); //[3, 2]
+//console.log(arr);
+
+//function getChIntv(date){
+//    var arr = date.split("-");
+//    for(var i=0;i<arr.length;i++){
+//        arr[i]=parseInt(arr[i]);
+//    }
+//    var chDate = arr.join("-");
+//    var result = Date.parse(chDate) - new Date().getTime();
+//    var day = parseInt(result/(1000*60*60*24));
+//    var hour = parseInt(result%(1000*60*60*24)/(1000*60*60));
+//    var min = parseInt(result%(1000*60*60*24)%(1000*60*60)/(1000*60));
+//    var sec = parseInt(result%(1000*60*60*24)%(1000*60*60)%(1000*60)/1000);
+//    return "距离三八妇女节还有"+day+"天"+hour+"小时"+min+"分"+sec+"秒"
+//}
+//var str = getChIntv("2017-03-08");
+//console.log(str);  // 距离三八妇女节还有5天3小时49分26秒
+
+
+function getChsDate(date){
+    var dateArr = date.split("-"),
+        yearStr = dateArr[0],
+        monthStr = dateArr[1],
+        dayStr  = dateArr[2];
+    var dict = {"0":"零","1":"一","2":"二","3":"三","4":"四","5":"五","6":"六",
+        "7":"七","8":"八","9":"九","10":"十","11":"十一","12":"十二","13":"十三",
+        "14":"十四","15":"十五","16":"十六","17":"十七","18":"十八","19":"十九",
+        "20":"二十","21":"二十一","22":"二十二","23":"二十三","24":"二十四",
+        "25":"二十五","26":"二十六","27":"二十七","28":"二十八","29":"二十九","30":"三十","31":"三十一"};
+    var chYearStr = dict[yearStr[0]]+dict[yearStr[1]]+dict[yearStr[2]]+dict[yearStr[3]];
+    var chMonthStr = dict[parseInt(monthStr)+""];
+    var chDayStr =dict[parseInt(dayStr)+""];
+    return chYearStr+"年"+chMonthStr+"月"+chDayStr+"日";
+}
+var str = getChsDate('2020-12-31');
+console.log(str);  // 二零一七年三月二日
+
+
+//function friendlyDate(time){
+//    var now = new Date().getTime();
+//    var result = (now - time)/1000;
+//    if(result<60){
+//        return "刚刚"
+//    }else if(result<3600&&result>60){
+//        return parseInt(result/60)+"分钟前"
+//    }else if(result>3600&&result<(3600*24)){
+//        return parseInt(result/3600)+"小时前"
+//    }else if(result>(3600*24)&&result<(3600*24*30)){
+//        return parseInt(result/3600/24)+"天前"
+//    }else if(result>(3600*24*30)&&result<(3600*24*30*12)){
+//        return parseInt(result/3600/24/30)+"个月前"
+//    }else{
+//        return parseInt(result/3600/24/30/12)+"年前"
+//    }
+//}
+//
+//var str = friendlyDate( '1488470253003' );//  1分钟前
+//var str2 = friendlyDate('541094400000');//4天前
+//    console.log(str);
+//    console.log(str2);
+</script>
+</body>
+</html>

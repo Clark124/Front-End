@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>tab</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body, ul, li, p{
+            margin: 0;
+            padding: 0;
+        }
+        ol,ul{
+            list-style: none;
+        }
+        body {
+            font: 12px/150% Arial,Verdana,"\5b8b\4f53";
+            color: #666;
+        }
+        a {
+            color: #666;
+            text-decoration: none;
+        }
+        .clearfix:after{
+            content: "";
+            display: block;
+            clear: both
+        }
+
+        .tab{
+            margin: 10px;
+        }
+        .tab-head{
+            border: 1px solid #cccccc;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+            width: 172px;
+        }
+        .select{
+
+            background: #cccccc;
+        }
+        .select a{
+            color: red;
+        }
+        .tab-head li{
+            float: left;
+            padding: 8px 0;
+
+            cursor: pointer;
+        }
+        .tab-head li a{
+            padding: 0 10px;
+            border-right: 1px solid #cccccc;
+        }
+        .tab-head li:nth-child(3)>a{
+            border-right: none;
+        }
+        .tab-content{
+            width: 702px;
+            border: 1px solid #cccccc;
+            margin-top: -1px;
+        }
+        .tab-content .panel{
+            display: none;
+        }
+        .tab-content .panel .prod-ct{
+            margin-left: -20px;
+            margin-top: -20px;
+        }
+        .tab-content .prod{
+            position: relative;
+            float: left;
+            width: 220px;
+            height: 210px;
+            padding: 10px 20px;
+            margin-left: 20px;
+            margin-top: 20px;
+            text-align: center;
+            border: 1px solid #eee;
+            background: #fff;
+        }
+        .tab-content .prod .cover{
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: rgba(0,0,0, 0.3);
+            transition: all 0.3s;
+            opacity: 0;
+
+        }
+        .tab-content .prod .cover:before{
+            content: "";
+            height: 100%;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .tab-content .prod .cover:hover{
+            opacity: 1;
+        }
+        .tab-content .prod .cover a{
+            color: #c81623;
+            padding: 10px 15px;
+            background: #ffffff;
+            border: 1px solid #c81623;
+            border-radius: 3px;
+        }
+        .tab-content .prod .proInf img{
+            width: 130px;
+            height: 130px;
+        }
+
+        .tab-content .prod .proInf .pro-price{
+            color: #c81623;
+        }
+        .panel.active{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="tab tab1">
+        <div class="tab-head">
+            <ul class="clearfix">
+                <li class="select"><a href="javascript:void (0)">热门</a></li>
+                <li><a href="javascript:void (0)">首饰珠宝</a></li>
+                <li><a href="javascript:void (0)">奢侈品</a></li>
+            </ul>
+        </div>
+        <div class="tab-content">
+            <ul class="panel-ct clearfix">
+                <li class="panel active">
+                    <ul class="prod-ct clearfix">
+                        <li class="prod">
+                            <div class="cover"><a href="#">立即抢购</a></div>
+                            <div class="proInf">
+                                <img src="imgs/earring.jpg" alt=""/>
+                                <p class="pro-name">精美耳环</p>
+                                <p class="pro-price">￥1699.00</p>
+                            </div>
+                        </li>
+                        <li class="prod">
+                            <div class="cover"><a href="#">立即抢购</a></div>
+                            <div class="proInf">
+                                <img src="imgs/earring.jpg" alt=""/>
+                                <p class="pro-name">精美耳环</p>
+                                <p class="pro-price">￥1699.00</p>
+                            </div>
+                        </li>
+                        <li class="prod">
+                            <div class="cover"><a href="#">立即抢购</a></div>
+                            <div class="proInf">
+                                <img src="imgs/earring.jpg" alt=""/>
+                                <p class="pro-name">精美耳环</p>
+                                <p class="pro-price">￥1699.00</p>
+                            </div>
+                        </li>
+                        <li class="prod">
+                            <div class="cover"><a href="#">立即抢购</a></div>
+                            <div class="proInf">
+                                <img src="imgs/earring.jpg" alt=""/>
+                                <p class="pro-name">精美耳环</p>
+                                <p class="pro-price">￥1699.00</p>
+                            </div>
+                        </li>
+                        <li class="prod">
+                            <div class="cover"><a href="#">立即抢购</a></div>
+                            <div class="proInf">
+                                <img src="imgs/earring.jpg" alt=""/>
+                                <p class="pro-name">精美耳环</p>
+                                <p class="pro-price">￥1699.00</p>
+                            </div>
+                        </li>
+                        <li class="prod">
+                            <div class="cover"><a href="#">立即抢购</a></div>
+                            <div class="proInf">
+                                <img src="imgs/earring.jpg" alt=""/>
+                                <p class="pro-name">精美耳环</p>
+                                <p class="pro-price">￥1699.00</p>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li class="panel">
+                    <ul class="prod-ct clearfix">
+                        <li class="prod">
+                            <div class="cover"><a href="#">立即抢购</a></div>
+                            <div class="proInf">
+                                <img src="imgs/necklace.jpg" alt=""/>
+                                <p class="pro-name">精美项链</p>
+                                <p class="pro-price">￥1888.00</p>
+                            </div>
+                        </li>
+                        <li class="prod">
+                            <div class="cover"><a href="#">立即抢购</a></div>
+                            <div class="proInf">
+                                <img src="imgs/necklace.jpg" alt=""/>
+                                <p class="pro-name">精美项链</p>
+                                <p class="pro-price">￥1888.00</p>
+                            </div>
+                        </li>
+                        <li class="prod">
+                            <div class="cover"><a href="#">立即抢购</a></div>
+                            <div class="proInf">
+                                <img src="imgs/necklace.jpg" alt=""/>
+                                <p class="pro-name">精美项链</p>
+                                <p class="pro-price">￥1888.00</p>
+                            </div>
+                        </li>
+                        <li class="prod">
+                            <div class="cover"><a href="#">立即抢购</a></div>
+                            <div class="proInf">
+                                <img src="imgs/necklace.jpg" alt=""/>
+                                <p class="pro-name">精美项链</p>
+                                <p class="pro-price">￥1888.00</p>
+                            </div>
+                        </li>
+                        <li class="prod">
+                            <div class="cover"><a href="#">立即抢购</a></div>
+                            <div class="proInf">
+                                <img src="imgs/necklace.jpg" alt=""/>
+                                <p class="pro-name">精美项链</p>
+                                <p class="pro-price">￥1888.00</p>
+                            </div>
+                        </li>
+                        <li class="prod">
+                            <div class="cover"><a href="#">立即抢购</a></div>
+                            <div class="proInf">
+                                <img src="imgs/necklace.jpg" alt=""/>
+                                <p class="pro-name">精美项链</p>
+                                <p class="pro-price">￥1888.00</p>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li class="panel">
+                    <ul class="prod-ct clearfix">
+                        <li class="prod">
+                            <div class="cover"><a href="#">立即抢购</a></div>
+                            <div class="proInf">
+                                <img src="imgs/ring.jpg" alt=""/>
+                                <p class="pro-name">铂金钻戒</p>
+                                <p class="pro-price">￥8888.00</p>
+                            </div>
+                        </li>
+                        <li class="prod">
+                            <div class="cover"><a href="#">立即抢购</a></div>
+                            <div class="proInf">
+                                <img src="imgs/ring.jpg" alt=""/>
+                                <p class="pro-name">铂金钻戒</p>
+                                <p class="pro-price">￥8888.00</p>
+                            </div>
+                        </li>
+                        <li class="prod">
+                            <div class="cover"><a href="#">立即抢购</a></div>
+                            <div class="proInf">
+                                <img src="imgs/ring.jpg" alt=""/>
+                                <p class="pro-name">铂金钻戒</p>
+                                <p class="pro-price">￥8888.00</p>
+                            </div>
+                        </li>
+                        <li class="prod">
+                            <div class="cover"><a href="#">立即抢购</a></div>
+                            <div class="proInf">
+                                <img src="imgs/ring.jpg" alt=""/>
+                                <p class="pro-name">铂金钻戒</p>
+                                <p class="pro-price">￥8888.00</p>
+                            </div>
+                        </li>
+                        <li class="prod">
+                            <div class="cover"><a href="#">立即抢购</a></div>
+                            <div class="proInf">
+                                <img src="imgs/ring.jpg" alt=""/>
+                                <p class="pro-name">铂金钻戒</p>
+                                <p class="pro-price">￥8888.00</p>
+                            </div>
+                        </li>
+                        <li class="prod">
+                            <div class="cover"><a href="#">立即抢购</a></div>
+                            <div class="proInf">
+                                <img src="imgs/ring.jpg" alt=""/>
+                                <p class="pro-name">铂金钻戒</p>
+                                <p class="pro-price">￥8888.00</p>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="tab tab2">
+        <div class="tab-head">
+            <ul class="clearfix">
+                <li class="select"><a href="javascript:void (0)">热门</a></li>
+                <li><a href="javascript:void (0)">首饰珠宝</a></li>
+                <li><a href="javascript:void (0)">奢侈品</a></li>
+            </ul>
+        </div>
+        <div class="tab-content">
+            <ul class="panel-ct clearfix">
+                <li class="panel active">
+                    <ul class="prod-ct clearfix">
+                        <li class="prod">
+                            <div class="cover"><a href="#">立即抢购</a></div>
+                            <div class="proInf">
+                                <img src="imgs/earring.jpg" alt=""/>
+                                <p class="pro-name">精美耳环</p>
+                                <p class="pro-price">￥1699.00</p>
+                            </div>
+                        </li>
+                        <li class="prod">
+                            <div class="cover"><a href="#">立即抢购</a></div>
+                            <div class="proInf">
+                                <img src="imgs/earring.jpg" alt=""/>
+                                <p class="pro-name">精美耳环</p>
+                                <p class="pro-price">￥1699.00</p>
+                            </div>
+                        </li>
+                        <li class="prod">
+                            <div class="cover"><a href="#">立即抢购</a></div>
+                            <div class="proInf">
+                                <img src="imgs/earring.jpg" alt=""/>
+                                <p class="pro-name">精美耳环</p>
+                                <p class="pro-price">￥1699.00</p>
+                            </div>
+                        </li>
+                        <li class="prod">
+                            <div class="cover"><a href="#">立即抢购</a></div>
+                            <div class="proInf">
+                                <img src="imgs/earring.jpg" alt=""/>
+                                <p class="pro-name">精美耳环</p>
+                                <p class="pro-price">￥1699.00</p>
+                            </div>
+                        </li>
+                        <li class="prod">
+                            <div class="cover"><a href="#">立即抢购</a></div>
+                            <div class="proInf">
+                                <img src="imgs/earring.jpg" alt=""/>
+                                <p class="pro-name">精美耳环</p>
+                                <p class="pro-price">￥1699.00</p>
+                            </div>
+                        </li>
+                        <li class="prod">
+                            <div class="cover"><a href="#">立即抢购</a></div>
+                            <div class="proInf">
+                                <img src="imgs/earring.jpg" alt=""/>
+                                <p class="pro-name">精美耳环</p>
+                                <p class="pro-price">￥1699.00</p>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li class="panel">
+                    <ul class="prod-ct clearfix">
+                        <li class="prod">
+                            <div class="cover"><a href="#">立即抢购</a></div>
+                            <div class="proInf">
+                                <img src="imgs/necklace.jpg" alt=""/>
+                                <p class="pro-name">精美项链</p>
+                                <p class="pro-price">￥1888.00</p>
+                            </div>
+                        </li>
+                        <li class="prod">
+                            <div class="cover"><a href="#">立即抢购</a></div>
+                            <div class="proInf">
+                                <img src="imgs/necklace.jpg" alt=""/>
+                                <p class="pro-name">精美项链</p>
+                                <p class="pro-price">￥1888.00</p>
+                            </div>
+                        </li>
+                        <li class="prod">
+                            <div class="cover"><a href="#">立即抢购</a></div>
+                            <div class="proInf">
+                                <img src="imgs/necklace.jpg" alt=""/>
+                                <p class="pro-name">精美项链</p>
+                                <p class="pro-price">￥1888.00</p>
+                            </div>
+                        </li>
+                        <li class="prod">
+                            <div class="cover"><a href="#">立即抢购</a></div>
+                            <div class="proInf">
+                                <img src="imgs/necklace.jpg" alt=""/>
+                                <p class="pro-name">精美项链</p>
+                                <p class="pro-price">￥1888.00</p>
+                            </div>
+                        </li>
+                        <li class="prod">
+                            <div class="cover"><a href="#">立即抢购</a></div>
+                            <div class="proInf">
+                                <img src="imgs/necklace.jpg" alt=""/>
+                                <p class="pro-name">精美项链</p>
+                                <p class="pro-price">￥1888.00</p>
+                            </div>
+                        </li>
+                        <li class="prod">
+                            <div class="cover"><a href="#">立即抢购</a></div>
+                            <div class="proInf">
+                                <img src="imgs/necklace.jpg" alt=""/>
+                                <p class="pro-name">精美项链</p>
+                                <p class="pro-price">￥1888.00</p>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li class="panel">
+                    <ul class="prod-ct clearfix">
+                        <li class="prod">
+                            <div class="cover"><a href="#">立即抢购</a></div>
+                            <div class="proInf">
+                                <img src="imgs/ring.jpg" alt=""/>
+                                <p class="pro-name">铂金钻戒</p>
+                                <p class="pro-price">￥8888.00</p>
+                            </div>
+                        </li>
+                        <li class="prod">
+                            <div class="cover"><a href="#">立即抢购</a></div>
+                            <div class="proInf">
+                                <img src="imgs/ring.jpg" alt=""/>
+                                <p class="pro-name">铂金钻戒</p>
+                                <p class="pro-price">￥8888.00</p>
+                            </div>
+                        </li>
+                        <li class="prod">
+                            <div class="cover"><a href="#">立即抢购</a></div>
+                            <div class="proInf">
+                                <img src="imgs/ring.jpg" alt=""/>
+                                <p class="pro-name">铂金钻戒</p>
+                                <p class="pro-price">￥8888.00</p>
+                            </div>
+                        </li>
+                        <li class="prod">
+                            <div class="cover"><a href="#">立即抢购</a></div>
+                            <div class="proInf">
+                                <img src="imgs/ring.jpg" alt=""/>
+                                <p class="pro-name">铂金钻戒</p>
+                                <p class="pro-price">￥8888.00</p>
+                            </div>
+                        </li>
+                        <li class="prod">
+                            <div class="cover"><a href="#">立即抢购</a></div>
+                            <div class="proInf">
+                                <img src="imgs/ring.jpg" alt=""/>
+                                <p class="pro-name">铂金钻戒</p>
+                                <p class="pro-price">￥8888.00</p>
+                            </div>
+                        </li>
+                        <li class="prod">
+                            <div class="cover"><a href="#">立即抢购</a></div>
+                            <div class="proInf">
+                                <img src="imgs/ring.jpg" alt=""/>
+                                <p class="pro-name">铂金钻戒</p>
+                                <p class="pro-price">￥8888.00</p>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script src="jquery/jquery-3.1.1.js"></script>
+    <script>
+       $tabHead =  $(".tab-head li");
+       $tabPro = $(".tab-content>ul>li ");
+        $tabHead.on("click",function(){
+            $this = $(this);
+            $this.addClass("select").siblings().removeClass("select");
+            $index =  $this.index();
+            $this.parents(".tab").find($tabPro).eq($index).addClass("active").siblings().removeClass("active");
+        })
+    </script>
+</body>
+</html>

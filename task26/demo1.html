@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+//    var fnArr = [];
+//    for (var i = 0; i < 10; i ++) {
+//        var index = i;
+//        fnArr[i] =  function(){
+//            return index;
+//        };
+//    }
+//    console.log( fnArr[5]() )
+
+//    var fnArr = [];
+//    for(var i = 0; i < 10; i++){
+//        (function(){
+//            var n = i;
+//            return  fnArr[n] =  function(){
+//                return n;
+//           };
+//        })()
+//    }
+//    console.log( fnArr[6]() );//6
+
+//    var fnArr = [];
+//    for(var i = 0; i < 10; i++){
+//        (function(n){
+//            return  fnArr[n] =  function() {
+//                return n;
+//            }
+//        })(i)
+//    }
+//      console.log(fnArr[9]());//9
+
+//    var fnArr = [];
+//    for(var i = 0; i < 10; i++){
+//        fnArr[i] = (function(){
+//            var n = i;
+//            return function(){
+//                return n;
+//            }
+//        })()
+//    }
+//    console.log(fnArr[3]());//3
+
+//var Car = (function(){
+//    var speed = 0;
+//    function setSpeed(s){
+//        speed = s
+//    }
+//    function getSpeed(){
+//        return console.log(speed)
+//    }
+//    function accelerate(){
+//        speed += 10;
+//    }
+//    function decelerate(){
+//        speed -= 10;
+//    }
+//    function getStatus(){
+//        if(speed==0){
+//            return console.log("stop")
+//        }else{
+//            return console.log("running")
+//        }
+//    }
+//    return {
+//        setSpeed: setSpeed,
+//        getSpeed: getSpeed,
+//        accelerate: accelerate,
+//        decelerate: decelerate,
+//        getStatus: getStatus
+//    }
+//})();
+//Car.setSpeed(30);
+//Car.getSpeed(); //30
+//Car.accelerate();
+//Car.getSpeed(); //40;
+//Car.decelerate();
+//Car.decelerate();
+//Car.getSpeed(); //20
+//Car.getStatus(); // 'running';
+//Car.decelerate();
+//Car.decelerate();
+//Car.getStatus();  //'stop';
+////Car.speed;  //error
+
+
+//for(var i=0;i<5;i++){
+//    (function(){
+//        var n = i;
+//        setTimeout(function(){
+//            console.log('delayer:' + n );
+//        }, 0);
+//        console.log(i);
+//    })()
+//}
+
+function isAndroid(){
+    return /Android/i.test(navigator.userAgent);
+}
+function isIphone(){
+    return /iPhone/i.test(navigator.userAgent);
+}
+function isIpad(){
+    return /iPad/i.test(navigator.userAgent);
+}
+function isIOS(){
+    return /(iPad)|(iPhone)/i.test(navigator.userAgent);
+}
+
+
+</script>
+
+</body>
+</html>

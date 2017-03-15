@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+
+//var arr = [3,1,0,-1,-3,2,-5];
+//function filter(arr){
+//    for(var i=0; i<arr.length;i++){
+//        if(arr[i]<1){
+//            arr.splice(i,1);
+//            filter(arr);
+//        }
+//    }
+//}
+//filter(arr);
+//console.log(arr);
+//var arr = [3,1,0,-1,-3,2,-5];
+//function filter(arr){
+//    var newArr = [];
+//    for(var i=0;i<arr.length;i++){
+//        if(arr[i]>0){
+//            newArr.push(arr[i]);
+//        }
+//    }
+//    return newArr;
+//}
+//var arr2 = filter(arr);
+//console.log(arr2); // [3,1,2]
+//console.log(arr); // [3,1,0,-1,-3,2,-5]
+//方法1：
+    function deepCopy(oldObj){
+        var newObj= {};
+        for(var i in oldObj){
+            if(typeof oldObj[i]==="string" || typeof oldObj[i] === "number" || typeof oldObj[i] === "boolean" ||oldObj[i] === undefined ||oldObj[i] === null){
+                newObj[i]=oldObj[i];
+            }else{
+                newObj[i]=deepCopy(oldObj[i]);
+            }
+        }
+        return newObj;
+    }
+//方法2：
+    function copy(oldobj){
+        return JSON.parse( JSON.stringify(oldobj));
+    }
+    var obj1= {
+        name:"jirengu",
+        sex:"male",
+        age:15,
+        married:false,
+        friends:{
+            name: "Clark",
+            sex: "female"
+        }
+    };
+
+    var obj2 = deepCopy(obj1);
+    obj2.name = "饥人谷";
+    obj2.friends.age = 30;
+    console.log(obj1);
+    /*
+    {
+     name:"jirengu",
+     sex:"male",
+     age:15,
+     married:false,
+     friends:{
+         name: "Clark",
+         sex: "female"
+      }
+    }
+    */
+    console.log(obj2);
+    /*
+     {
+     name:"饥人谷",
+     sex:"male",
+     age:15,
+     married:false,
+     friends:{
+         name: "Clark",
+         sex: "female"，
+         age: 30
+         }
+     }
+    */
+    var obj3 = copy(obj1);
+    obj3.age = 28;
+    obj3.friends.name = "mike";
+    console.log(obj3);
+    /*
+     {
+     name:"jirengu",
+     sex:"male",
+     age:28,
+     married:false,
+     friends:{
+         name: "mike",
+         sex: "female"
+         }
+     }
+    */
+
+
+</script>
+</body>
+</html>

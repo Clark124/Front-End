@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>导航栏</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        a{
+            text-decoration: none;
+            color: #ffffff;
+        }
+        li{
+            list-style: none;
+        }
+        .nav{
+            width: 200px;
+            margin: 10px;
+        }
+        .nav-lv1>li{
+            position: relative;
+            background: red;
+            padding: 0 15px;
+
+        }
+        .nav-lv1>li>div{
+            padding: 10px 0;
+            border-bottom: 1px solid indianred;
+        }
+        .nav-lv1>li>div a{
+            display: block;
+            width: 155px;
+            float: left;
+        }
+        .nav-lv1>li>div span{
+            float: right;
+            color: #ffffff;
+        }
+        .nav-lv1>li>div:after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .nav-lv2{
+            display: none;
+            width: 200px;
+            border: 1px solid #cccccc;
+            position: absolute;
+            top: 0;
+            left: 200px;
+        }
+        .nav-lv2:after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .nav-lv2>li{
+
+            width: 70px;
+            float: left;
+            padding: 10px  15px;
+        }
+        .nav-lv2>li a{
+            font-size: 12px;
+            color: #000000;
+        }
+        .hover{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <ul class="nav-lv1">
+            <li>
+                <div>
+                    <a href="#">珠宝玉器</a>
+                    <span> > </span>
+                </div>
+                <ul class="nav-lv2 ">
+                    <li><a href="#">翡翠</a></li>
+                    <li><a href="#">玉石</a></li>
+                    <li><a href="#">宝石</a></li>
+                    <li><a href="#">水晶</a></li>
+                    <li><a href="#">玛瑙</a></li>
+                    <li><a href="#">珍珠</a></li>
+                    <li><a href="#">钻石</a></li>
+                    <li><a href="#">琥珀</a></li>
+                    <li><a href="#">钻石</a></li>
+                    <li><a href="#">玛瑙</a></li>
+                </ul>
+            </li>
+            <li>
+                <div>
+                    <a href="#">珠宝玉器</a>
+                    <span> > </span>
+                </div>
+                <ul class="nav-lv2">
+                    <li><a href="#">翡翠</a></li>
+                    <li><a href="#">玉石</a></li>
+                    <li><a href="#">宝石</a></li>
+                    <li><a href="#">水晶</a></li>
+                    <li><a href="#">玛瑙</a></li>
+                    <li><a href="#">珍珠</a></li>
+                </ul>
+            </li>
+            <li>
+                <div>
+                    <a href="#">珠宝玉器</a>
+                    <span> > </span>
+                </div>
+                <ul class="nav-lv2">
+                    <li><a href="#">宝石</a></li>
+                    <li><a href="#">水晶</a></li>
+                    <li><a href="#">玛瑙</a></li>
+                    <li><a href="#">珍珠</a></li>
+                </ul>
+            </li>
+            <li>
+                <div>
+                    <a href="#">珠宝玉器</a>
+                    <span> > </span>
+                </div>
+                <ul class="nav-lv2">
+                    <li><a href="#">宝石</a></li>
+                    <li><a href="#">水晶</a></li>
+                    <li><a href="#">玛瑙</a></li>
+                    <li><a href="#">珍珠</a></li>
+                    <li><a href="#">钻石</a></li>
+                    <li><a href="#">琥珀</a></li>
+
+                </ul>
+            </li>
+            <li>
+                <div>
+                    <a href="#">珠宝玉器</a>
+                    <span> > </span>
+                </div>
+                <ul class="nav-lv2">
+                    <li><a href="#">宝石</a></li>
+                    <li><a href="#">水晶</a></li>
+                    <li><a href="#">玛瑙</a></li>
+                    <li><a href="#">珍珠</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <script src="jquery/jquery-3.1.1.js"></script>
+    <script>
+        $navLv1 = $(".nav .nav-lv1 li");
+        $navLv2 = $(".nav .nav-lv1 li .nav-lv2");
+        $navLv1.hover(function(){
+            $(this).find($navLv2).addClass("hover");
+        },function(){
+            $(this).find($navLv2).removeClass("hover");
+        })
+    </script>
+</body>
+</html>

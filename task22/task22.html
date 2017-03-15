@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function trim(str){
+        return str.replace(/^\s+|\s+$/g,"");
+    }
+//     function  trim(str){
+//         var arr = str.split("");
+//         for(var i=0;i<arr.length;i++){
+//             if(arr[i]==" "){
+//                 arr[i] = "";
+//             }else{
+//                 break
+//             }
+//         }
+//        for(var j=arr.length-1;j>=0;j--){
+//            if(arr[j]==" "){
+//                arr[j] = "";
+//            }else{
+//                break
+//            }
+//        }
+//         return arr.join("");
+//     }
+//    var str = "   clark   ";
+    //    console.log(trim(str));
+
+//    function isPhoneNum(str){
+//        return /^(\+86-)?1[3578]\d-?\d{4}-?\d{4}$/.test(str);
+//    }
+//
+//    function isEmai(str){
+//        return /^\w+@\w+\.\w+$/.test(str)
+//    }
+//    function isValidUsername(str){
+//        return /^\w{6,20}$/.test(str)
+//    }
+//    function isValidPassword(str){
+//        if(str.length<6 || str.length>20 || /\W/.test(str)){
+//            return false;
+//        }
+//        var count = 0;
+//        if(/[a-z]/g.test(str))  count++;
+//        if(/[A-Z]/g.test(str))  count++;
+//        if(/[0-9]/g.test(str))  count++;
+//        if(/_/g.test(str))  count++;
+//        if(count >= 2){
+//            return true;
+//        }
+//    }
+
+//    var re = /#[a-f0-9]{6}/gi;//var re = /#[a-fA-F0-9]{6}/gi;
+//    var subj = "color: #121212; background-color: #AA00ef; width: 12px; bad-colors: f#fddee ";
+//    console.log( subj.match(re) ) ; // ['#121212', '#AA00ef']
+
+//    var str = 'hello  "hunger" , hello "world"';
+//    var pat =  /".*"/g;
+//    console.log(str.match(pat));//""hunger" , hello "world""
+    var str = 'hello  "hunger" , hello "world"';
+    var pat =  /".*?"/g;
+    console.log(str.match(pat));
+</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div class="mod-tabs">
+        <ul>
+            <li>list1</li>
+            <li>list2</li>
+            <li>list3</li>
+        </ul>
+        <button class="btn">点我</button>
+    </div>
+
+        <script>
+//        var newEle = document.createElement("div");//创建元素div
+//        newEle.setAttribute("id","box");//设置div属性id="box"
+//        var btn = document.createElement("span");//创建元素span
+//        btn.setAttribute("class","btn");//设置span属性 class="btn"
+//        var span_text = document.createTextNode("jirengu");//创建文件节点"jirengu"
+//        btn.appendChild(span_text);//将文本节点插入到元素span中
+//        newEle.appendChild(btn);//将元素span插入到元素div中
+//        document.body.appendChild(newEle);//将元素div插入到body中
+//        newEle.removeChild(btn);//删除元素div的子节点span
+          function $(ele){
+              if(ele.length > 0 && ele[0]==="#"){
+                  return document.querySelector(ele);
+              }else{
+                  return document.querySelectorAll(ele)
+              }
+          }
+          var li_lists = $(".mod-tabs ul li");
+          var btn  = $(".mod-tabs .btn")[0];
+         li_lists.onclick = function(){
+             alert("hello")
+         };
+         btn.onclick = function(){
+             alert("jirengu")
+         }
+    </script>
+</body>
+</html>

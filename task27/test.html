@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div>
+        <form action="/login" method="get">
+            <input type="text" name="username"/>
+            <button id="btn">查询</button>
+        </form>
+        <ul>
+
+        </ul>
+    </div>
+    <script>
+        var btn = document.querySelector("#btn");
+        btn.addEventListener("click",function(){
+           ajax({
+               url: "/login",
+               type: 'get',
+               date: ''
+
+           })
+        });
+        function ajax(opts){
+            opts.success = opts.success || function(){};
+            opts.error = opts.error || function(){};
+            opts.type = opts.type || 'get';
+            opts.dataType = opts.dataType || 'json';
+            opts.data = opts.data || {};
+            var dataStr = '';
+            for(var key in opts.data){
+                dataStr += key+ '='+opts.data[key] + '&';
+            }
+            dataStr = dataStr.substr(0,dataStr.length-1);
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState === 4 ){
+                    if(xhr.status === 200 || xhr.status ===304){
+                        if(opts.type === 'text'){
+                            opts.success(xhr.responseText)
+                        }
+                        if(opts.type === 'json'){
+                            var json =JSON.parse(xhr.responseText);
+                            opts.success(json)
+                        }
+                    }else{
+                        opts.error()
+                    }
+                }
+            };
+            if(opts.type.toLowerCase() === 'get'){
+                xhr.open(opts.type,opts.url+'?'+dataStr,true);
+                xhr.send();
+            }
+            if(opts.type.toLowerCase() === 'post'){
+                xhr.open(opts.type,opts.url,true);
+                xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
+                xhr.send(dataStr)
+            }
+
+
+        }
+    </script>
+</body>
+</html>
