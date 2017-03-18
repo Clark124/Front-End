@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            border: 1px solid #cccccc;
+        }
+    </style>
+</head>
+<body>
+<p>1.当点击$btn 时，让 $btn 的背景色变为红色再变为蓝色</p>
+<button id="btn">点我</button>
+<p>2.当窗口滚动时，获取垂直滚动距离</p>
+<div class="scrollTop">
+    当前当前垂直滚动距离为:<span></span>
+</div>
+<p>3.当鼠标放置到$div 上，把$div 背景色改为红色，移出鼠标背景色变为白色</p>
+<div class="box"></div>
+<p>4.当鼠标激活 input 输入框时让输入框边框变为蓝色，
+    当输入框内容改变时把输入框里的文字小写变为大写，
+    当输入框失去焦点时去掉边框蓝色，控制台展示输入框里的文字</p>
+<div class="username">
+    <label for="username">请输入文字</label>
+    <input type="text" id="username" name="username"/>
+</div>
+<p>5.当选择 select 后，获取用户选择的内容</p>
+<select name="city" id="city">
+    <option value="武汉" selected>武汉</option>
+    <option value="上海">上海</option>
+    <option value="广州">广州</option>
+    <option value="北京">北京</option>
+</select>
+
+<div class="citySec">
+    您所在的城市是：<span></span>
+</div>
+<script src="jquery/jquery-3.1.1.js"></script>
+<script>
+    $btn = $("#btn");
+        $btn.on("click",function(){
+            $(this).css({"background-color":"red"});
+            setTimeout(function(){
+                $btn.css("background-color","blue")
+            },300);
+    });
+    $(window).on("scroll",function(){
+        $(".scrollTop span").text($(window).scrollTop())
+    });
+    $div = $(".box");
+    $div.on("mouseenter",function(){
+        $(this).css("background-color","red")
+    });
+    $div.on("mouseleave",function(){
+        $(this).css("background-color","#fff")
+    });
+    $username =  $("#username");
+    $username.on("focus",function(){
+        $(this).css("border","1px solid blue");
+    });
+    $username.on("input",function(){
+        $text= $(this).val();
+        $(this).val($text.toUpperCase())
+    });
+    $username.on("blur",function(){
+        $(this).css("border","none");
+        console.log($(this).val());
+    });
+    $city = $("#city");
+    $select = $("#city option:selected").val();
+    $(".citySec span").text($select);
+    $city.on("change",function(){
+        $select = $("#city option:selected").val();
+        $(".citySec span").text($select)
+    })
+
+</script>
+</body>
+</html>

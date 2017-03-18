@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>加载更多</title>
+    <style>
+        .container {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .container li {
+            border: 1px solid #cccccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .container li:hover{
+            background: green;
+            color: #ffffff;
+        }
+        #btn{
+            text-align: center;
+            text-decoration: none;
+            color: #e27272;
+            border: 1px solid #e27272;
+            border-radius: 3px;
+            display: block;
+            margin: 0 auto;
+            width: 80px;
+            height: 40px;
+            line-height: 40px;
+        }
+        #btn img{
+            width: 40px;
+            height: 40px;
+        }
+
+    </style>
+</head>
+<body>
+<ul class="container">
+    <li>内容1</li>
+    <li>内容2</li>
+</ul>
+<a href="#" id="btn">加载更多</a>
+<script src="jquery/jquery-3.1.1.js"></script>
+<script>
+    $btn = $("#btn");
+    $ct = $(".container");
+    $idx = 3;
+    $isDataArr = true;
+    $btn.on("click",function(e){
+        e.preventDefault();
+        if($isDataArr===false){
+            return;
+        }
+        $btn.html("<img src='imgs/loading.jpg'>");
+
+        $.ajax({
+            url: "/loadMore",
+            type: "get",
+            data: {
+                index: $idx,
+                length: 5
+            }
+        }).done(function(ret){
+            success(ret)
+        }) .fail(function(){
+             alert("系统异常")
+        });
+        $isDataArr = false;
+    });
+
+    function success(data){
+        var html = "";
+        $.each(data,function(){
+            html += "<li>"+this+"</li>"
+        });
+        $ct.append(html);
+        $btn.html("加载更多");
+        $idx += 5;
+        $isDataArr = true;
+    }
+</script>
+
+</body>
+</html>
