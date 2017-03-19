@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        html,body,p,ul,li,h1,h2,h3{
+            margin: 0;
+            padding: 0;
+        }
+        *{
+            box-sizing: border-box;
+        }
+        li{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+            color: #000000;
+        }
+        .clearfix:after{
+            content: "";
+            display: block;
+            clear:both;
+        }
+        .news{
+            width: 500px;
+            margin: 20px 30px;
+        }
+        .news li{
+            margin-bottom: 20px;
+        }
+
+        .news li h3{
+            width: 380px;
+            float: left;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-left: 20px;
+        }
+        .news li p{
+            margin-top: 10px;
+            margin-left: 20px;
+            width: 380px;
+            float: left;
+            line-height: 1.5;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .news li img{
+            float: left;
+            width: 80px;
+            height: 80px;
+        }
+        #btn{
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+<div class="news">
+    <ul class="news-ct">
+        <li>
+            <a href="#" class="clearfix">
+                <img src="http://n.sinaimg.cn/ent/transform/20170226/UUkr-fyavvsk3539415.jpg" alt=""/>
+                <h3>余文乐称被逼公开恋情 交往3个月并没有认定女方</h3>
+                <p>新浪娱乐讯 港星余文乐[微博]、曾志伟[微博]、导演黄进与编剧陈楚珩18日在台北出席茶叙、宣传新片《一念无明》，
+                    35岁余文乐一月在社群网站上认爱台湾皮带千金王棠云，他受访时再承认两人已经恋爱三个月，
+                    被问及是否已认定女友？他笑说：“我是被逼的，都被拍到了！”他认爱后却遭到网友唱衰、狂骂他“消费周冬雨[微博]”，
+                    对于此事，他淡淡地说：“我不是喜欢吵、说太多的人，让它过去就算了。”
+                </p>
+            </a>
+        </li>
+        <li>
+            <a href="#" class="clearfix">
+                <img src="http://n.sinaimg.cn/ent/transform/20170319/U4ke-fycnyhk9218766.jpg" alt=""/>
+                <h3>贾静雯生下第三胎 前夫晒梧桐妹给自己的动人祝福</h3>
+                <p>
+                    贾静雯与孙志浩离婚后，各自找到幸福，女儿梧桐妹也和父母另一半关系融洽，
+                    18日孙志浩在微博曝光梧桐妹给他的生日祝福，信中梧桐妹用英文对小妈林若亚赞不绝口：“爹地生日快乐，
+                    你人生中遇见一个完美女孩，你要好好珍惜她，因为她真的很棒！”
+                </p>
+            </a>
+        </li>
+        <li>
+            <a href="#" class="clearfix">
+                <img src="http://n.sinaimg.cn/ent/transform/20170319/Ozb0-fycnyhk9323426.jpg" alt=""/>
+                <h3>汪小菲：男人不是真的怕女人 而是怕她们不开心</h3>
+                <p>
+                    新浪娱乐讯 3月19日凌晨，汪小菲[微博]转发了一篇网友的长博文，文章中提到，
+                    汪小菲生命中最重要的三个女人是他的母亲张兰、妻子大S和女儿小玥儿，
+                    还同时列举了他谈及这三个女人时的态度。看到网友对自己昔日言论的总结，
+                    汪小菲感慨道：“男人怕女人不是真的怕，而是怕她们不开心，不快乐。
+                </p>
+            </a>
+        </li>
+    </ul>
+    <button id="btn">加载更多</button>
+</div>
+<script src="jquery/jquery-3.1.1.js"></script>
+<script>
+    $btn = $("#btn");
+    $page = 0;
+    var isNewsArrive =true;
+    var isOver = false;
+    getNews();
+    $(window).on("scroll",function(){
+        if(isVisible($btn)){
+            getNews()
+        }
+    });
+    function getNews(){
+        if(isNewsArrive === false || isOver===true){
+            return;
+        }
+        isNewsArrive =false;
+        $.ajax({
+            url:"/getNews",
+            type: "get",
+            data: {
+                page: $page
+            },
+            success:function(ret){
+                appendHtml(ret.data);
+                $page++;
+                isNewsArrive =true;
+
+            },
+            error:function(){
+                alert("加载失败")
+            }
+        });
+
+    }
+
+    function appendHtml(news){
+        if(news.length===0){
+            isOver = true;
+            $(".news").append("<p>没有更多数据了</p>");
+            return;
+        }
+        var html = "";
+        $.each(news,function(){
+            html += "<li>";
+            html +=     "<a href='"+this.link+"' class='clearfix'>";
+            html +=         "<img src='"+this.img+"' />";
+            html +=         "<h3>"+this.title+"</h3>";
+            html +=         "<p>"+this.brif+"</p>";
+            html +=     "</a>";
+            html += "</li>";
+
+        });
+        $(".news-ct").append(html);
+    }
+
+    function isVisible($node){
+        var windowHeight = $(window).height(),
+                scrollTop = $(window).scrollTop(),
+                offsetTop = $node.offset().top,
+                nodeHeight = $node.outerHeight();
+        if(windowHeight+scrollTop>offsetTop && scrollTop<offsetTop+nodeHeight){
+            return true;
+        }else{
+            return false;
+        }
+    }
+</script>
+</body>
+</html>
