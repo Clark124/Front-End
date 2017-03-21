@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>无限轮播图</title>
+    <style>
+        html,body,ul,li{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        .clearfix:after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .carousel{
+            position: relative;
+            width: 400px;
+            height: 260px;
+            overflow: hidden;
+        }
+        .carousel .img-ct{
+            position: absolute;
+            width: 1600px;
+        }
+        .carousel .img-ct li{
+            float:left
+        }
+        .carousel .btn{
+            position: absolute;
+            top: 50%;
+            background-color: #000000;
+            opacity: 0.5;
+            color: #ffffff;
+            font-size: 18px;
+            display: block;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 15px;
+
+        }
+        .carousel .btn.btn-pre{
+            left: 20px;
+        }
+        .carousel .btn.btn-next{
+            right: 20px;
+        }
+        .carousel .img-ct img{
+            width: 400px;
+            height: 260px;
+        }
+        .carousel .switch{
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform:translate(-50%)
+
+        }
+        .carousel .switch li{
+            width: 20px;
+            height: 6px;
+            border-radius: 3px;
+            background-color: #ffffff;
+            margin: 5px;
+            float: left;
+            cursor: pointer;
+        }
+        .switch .active{
+            background-color: #666 !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="carousel">
+        <ul class="img-ct clearfix">
+            <li data-index="0"><a href="#"><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489895177126&di=85e697ea3226a7a748d0c655bb9e77aa&imgtype=0&src=http%3A%2F%2Fb.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Fa686c9177f3e670900d880193fc79f3df9dc5578.jpg" alt=""/></a></li>
+            <li data-index="1"><a href="#"><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489895177126&di=fb54b54fb1608d6001ede5a32c3e68d9&imgtype=0&src=http%3A%2F%2Fa.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Fd6ca7bcb0a46f21feeee9bb5f2246b600d33ae7a.jpg" alt=""/></a></li>
+            <li data-index="2"><a href="#"><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489895254553&di=0c105d9ff41e3a81ad3137b901d5370b&imgtype=0&src=http%3A%2F%2Fa.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F11385343fbf2b211d35090a8ce8065380dd78edd.jpg" alt=""/></a></li>
+            <li data-index="3"><a href="#"><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489895254552&di=3185d51c6f136ff361991c00505a47d7&imgtype=0&src=http%3A%2F%2Fa.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F4e4a20a4462309f78861b8f4760e0cf3d6cad6cd.jpg" alt=""/></a></li>
+        </ul>
+        <a href="#" class="btn btn-pre">&lt;</a>
+        <a href="#" class="btn btn-next">&gt;</a>
+        <ul class="switch clearfix">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+    <script src="jquery-3.1.1.js"></script>
+    <script>
+        var $imgCt = $(".img-ct"),
+            $preBtn = $(".btn-pre"),
+            $nextBtn = $(".btn-next"),
+            $switch = $(".switch");
+
+        var $firstImg = $imgCt.children().first(),
+            $lastImg = $imgCt.children().last();
+        var imgWidth = $firstImg.width();
+        var currPageIndex = 0;
+        var imgLength = $imgCt.children().length;
+        $imgCt.append($firstImg.clone());
+        $imgCt.prepend($lastImg.clone());
+        $imgCt.width(imgWidth*$imgCt.children().length);
+        $imgCt.css({left:-imgWidth});
+        var isAnimate = false;
+        $nextBtn.on("click",function(e){
+            e.preventDefault();
+            playNext()
+        });
+        $preBtn.on("click",function(e){
+            e.preventDefault();
+            playPre()
+        });
+        $switch.on("click","li",function(){
+            if(isAnimate === true){
+                return
+            }
+            isAnimate = true;
+            $(this).addClass("active").siblings().removeClass("active");
+            var n = $(this).index();
+            currPageIndex = n;
+            $imgCt.animate({
+                left:-imgWidth*(n+1)
+            },function(){
+
+                isAnimate = false;
+            });
+        });
+
+        function playNext(){
+            if(isAnimate === true){
+                return
+            }
+            isAnimate = true;
+
+            $imgCt.animate({
+
+                left: '-='+imgWidth
+            },function(){
+                currPageIndex++;
+
+                if(currPageIndex === imgLength){
+                    $imgCt.css({left:-imgWidth});
+                    currPageIndex = 0;
+                }
+                $switch.children().removeClass("active").eq(currPageIndex).addClass("active");
+                isAnimate = false;
+            })
+        }
+        function playPre(){
+            if(isAnimate === true){
+                return
+            }
+            isAnimate = true;
+            $imgCt.animate({
+                left:"+="+imgWidth
+            },function(){
+                currPageIndex--;
+                if(currPageIndex < 0){
+                    $imgCt.css({left:-imgWidth*imgLength});
+                    currPageIndex = imgLength-1;
+                }
+                $switch.children().removeClass("active").eq(currPageIndex).addClass("active");
+                isAnimate = false;
+            })
+        }
+    </script>
+</body>
+</html>

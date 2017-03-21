@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>渐变轮播图</title>
+    <style>
+        html,body,ul,li{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        .clearfix:after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .carousel{
+            position: relative;
+            width: 400px;
+            height: 260px;
+
+        }
+        .carousel .img-ct{
+            position: relative;
+
+        }
+        .carousel .img-ct li{
+            position: absolute;
+            display: none;
+        }
+        .carousel .btn{
+            position: absolute;
+            top: 50%;
+            background-color: #000000;
+            opacity: 0.5;
+            color: #ffffff;
+            font-size: 18px;
+            display: block;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 15px;
+
+        }
+        .carousel .btn.btn-pre{
+            left: 20px;
+        }
+        .carousel .btn.btn-next{
+            right: 20px;
+        }
+        .carousel .img-ct img{
+            width: 400px;
+            height: 260px;
+        }
+        .carousel .switch{
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform:translate(-50%)
+
+        }
+        .carousel .switch li{
+            width: 20px;
+            height: 6px;
+            border-radius: 3px;
+            background-color: #ffffff;
+            margin: 5px;
+            float: left;
+            cursor: pointer;
+        }
+        .switch .active{
+            background-color: #666 !important;
+        }
+    </style>
+</head>
+<body>
+<div class="carousel">
+    <ul class="img-ct clearfix">
+        <li data-index="0"><a href="#"><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489895177126&di=85e697ea3226a7a748d0c655bb9e77aa&imgtype=0&src=http%3A%2F%2Fb.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Fa686c9177f3e670900d880193fc79f3df9dc5578.jpg" alt=""/></a></li>
+        <li data-index="1"><a href="#"><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489895177126&di=fb54b54fb1608d6001ede5a32c3e68d9&imgtype=0&src=http%3A%2F%2Fa.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Fd6ca7bcb0a46f21feeee9bb5f2246b600d33ae7a.jpg" alt=""/></a></li>
+        <li data-index="2"><a href="#"><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489895360592&di=dc890b8a11fa9b9ec4fb8fc362b45f77&imgtype=0&src=http%3A%2F%2Fe.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Fcb8065380cd791234b642d74af345982b2b7802e.jpg" alt=""/></a></li>
+        <li data-index="3"><a href="#"><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489895360592&di=d2e2cc621a7322f2abc710c816216449&imgtype=0&src=http%3A%2F%2Fg.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F902397dda144ad3497422f87d2a20cf431ad8535.jpg" alt=""/></a></li>
+    </ul>
+    <a href="#" class="btn btn-pre">&lt;</a>
+    <a href="#" class="btn btn-next">&gt;</a>
+    <ul class="switch clearfix">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+
+<script src="jquery-3.1.1.js"></script>
+<script>
+    var $carouselCt = $(".carousel");
+        $imgCt = $(".img-ct"),
+        $items= $imgCt.children(),
+        $preBtn = $(".btn-pre"),
+        $nextBtn = $(".btn-next"),
+        $switch = $(".switch");
+
+    var currPageIndex = 0;
+    var imgsLength = $imgCt.children().length;
+    var isAnimate = false;
+    $nextBtn.on("click",function(e){
+        e.preventDefault();
+        playNext();
+    });
+    $preBtn.on("click",function(e){
+        e.preventDefault();
+        playPre();
+    });
+    $carouselCt.on("mouseenter",function(){
+        stopAuto();
+    });
+    $carouselCt.on("mouseleave",function(){
+        playAuto();
+    });
+    $switch.on("click","li",function(){
+        var n = $(this).index();
+        play(n);
+    });
+    function play(n){
+        if(isAnimate === true){
+            return
+        }
+        isAnimate = true;
+        $items.eq(currPageIndex).fadeOut(500);
+        $items.eq(n).fadeIn(500,function(){
+            currPageIndex = n;
+            $switch.children().removeClass("active").eq(currPageIndex).addClass("active");
+            isAnimate = false;
+        })
+    }
+    play(0);
+    playAuto();
+    function playNext(){
+       play((currPageIndex+1)%imgsLength)
+    }
+    function playPre(){
+       play((currPageIndex+imgsLength-1)%imgsLength)
+    }
+    function playAuto(){
+        animating = setInterval(function(){
+            playNext()
+        },3000);
+    }
+    function stopAuto(){
+        clearInterval(animating)
+    }
+</script>
+</body>
+</html>
