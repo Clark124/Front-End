@@ -1,0 +1,312 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>木桶布局</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link href="" rel="stylesheet">
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+
+        .img-preview{
+            width: 1000px;
+            margin: 0 auto;
+        }
+
+        .img-row {
+            margin-bottom: 10px;
+        }
+
+        .img-row:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .img-box {
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+<div class="img-preview">
+
+</div>
+
+<script>
+function Barrel($ct){
+    this.$ct = $ct;
+    this.rowList = [];
+    this.loadImg();
+}
+
+Barrel.prototype = {
+    loadImg: function(){
+        var _this = this;
+        var imgUrls = this.getImgUrls(20);
+        for(var i=0;i<imgUrls.length;i++){
+            var newImg =  new Image();
+            newImg.src = imgUrls[i];
+
+            newImg.addEventListener("load",function(){
+                var imgInfo = {
+                    target: $(this),
+                    width: 100*(this.width/this.height),
+                    height: 100
+                };
+                _this.render(imgInfo);
+            })
+        }
+
+    },
+
+    render: function(imgInfo){
+        var clientWidth = this.$ct.width();
+        var rowWidth = 0;
+        var newRowHeight = 0;
+        var lastImgInfo = imgInfo;
+
+        this.rowList.push(imgInfo);
+        for(var i=0; i< this.rowList.length; i++){
+            rowWidth = rowWidth + this.rowList[i].width;
+        }
+        if(rowWidth> clientWidth){
+            this.rowList.pop();
+            rowWidth = rowWidth-lastImgInfo.width;
+            newRowHeight = clientWidth*100/rowWidth;
+            //   rowWidth/200   ==  clientWidth/ X
+
+            this.layout(newRowHeight);
+            this.rowList = [];
+            this.rowList.push(imgInfo);
+        }
+
+
+    },
+
+    layout: function(newRowHeight){
+        var $rowCt = $('<div class="img-row"></div>');
+        $.each(this.rowList, function(idx, imgInfo){
+            var $imgCt = $('<div class="img-box"></div>'),
+                    $img = $(imgInfo.target);
+            $img.height(newRowHeight);
+            $imgCt.append($img);
+            $rowCt.append($imgCt);
+        });
+        this.$ct.append($rowCt);
+    },
+
+    getImgUrls: function(num) {
+        var color, width, height, urls = [];
+        for (var i = 0; i < num; i++) {
+            color = Math.random().toString(16).substring(2, 8);
+            width = Math.floor(Math.random() * 100 + 50);
+            height = Math.floor(Math.random() * 30 + 50);
+            urls.push("http://placehold.it/" + width + "x" + height + "/" + color + "/fff");
+        }
+        return urls;
+    }
+};
+
+new Barrel($('.img-preview'));
+
+
+//    function Barrel($ct){
+//        this.$ct = $ct;
+//        this.rowList = [];
+//        this.loadImg();
+//    }
+//
+//    Barrel.prototype = {
+//        loadImg: function(){
+//            var _this = this;
+//            var imgUrls = this.getImgUrls(20);
+//            $.each(imgUrls,function(idx, url){
+//                console.log(url);
+//                var img = new Image();
+//                img.src = url;
+//                img.onload = function(){
+//                    var originWidth = img.width,
+//                        originHeight = img.height;
+//                    var imgInfo = {
+//                        target: $(img),
+//                        width: 100*(originWidth/originHeight),
+//                        height: 100
+//                    };
+//                    _this.render(imgInfo);
+//                }
+//            });
+//        },
+//
+//        render: function(imgInfo){
+//            var _this = this;
+//            var clientWidth = this.$ct.width(),
+//                rowWidth = 0,
+//                newRowHeight = 0,
+//                lastImgInfo = imgInfo;
+//            this.rowList.push(imgInfo);
+//            $.each(this.rowList,function(){
+//                rowWidth += this.width;
+//                if(rowWidth > clientWidth){
+//                    _this.rowList.pop();
+//                    rowWidth = rowWidth - lastImgInfo.width;
+//                    newRowHeight = clientWidth*100/rowWidth;
+//                    _this.layout(newRowHeight);
+//                    _this.rowList = [];
+//                    _this.rowList.push(lastImgInfo);
+//                }
+//            });
+////            for(var i=0; i< this.rowList.length; i++){
+////                rowWidth += this.rowList[i].width;
+////                if(rowWidth > clientWidth){
+////                    this.rowList.pop();
+////                    rowWidth = rowWidth - lastImgInfo.width;
+////                    newRowHeight = clientWidth*100/rowWidth;
+////                    this.layout(newRowHeight);
+////                    this.rowList = [];
+////                    this.rowList.push(lastImgInfo);
+////                }
+////            }
+//        },
+//
+//        layout: function(newRowHeight){
+//            var $rowCt = $('<div class="img-row"></div>');
+//            $.each(this.rowList,function(){
+//                var $img = this.target;
+//                var $imgBox = $('<div class="img-box"></div>');
+//                $img.height(newRowHeight);
+//                $imgBox.append($img);
+//                $rowCt.append($imgBox);
+//            });
+////            for(var i=0;i<this.rowList.length;i++){
+////                var $img = this.rowList[i].target;
+////                $img.height(newRowHeight);
+////                var $imgBox = $('<div class="img-box"></div>');
+////                $imgBox.append($img);
+////                $rowCt.append($imgBox);
+////            }
+//            this.$ct.append($rowCt);
+//        },
+//
+//        getImgUrls: function(num) {
+//            var color, width, height, urls = [];
+//            for (var i = 0; i < num; i++) {
+//                color = Math.random().toString(16).substring(2, 8);
+//                width = Math.floor(Math.random() * 100 + 50);
+//                height = Math.floor(Math.random() * 30 + 50);
+//                urls.push("http://placehold.it/" + width + "x" + height + "/" + color + "/fff");
+//            }
+//            return urls;
+//        }
+//    };
+//
+//    new Barrel($('.img-preview'));
+
+
+//    function Barrels($ct) {
+//        this.$ct = $ct;
+//        this.imgNum = 40;
+//        this.baseHeight = 100;
+//        this.rowList = [];
+//        this.loadImg();
+//
+//    }
+//
+//    Barrels.prototype = {
+//
+//        loadImg: function() {
+//            var _this = this;
+//            var imgUrls = this.getImgUrls(20);
+//            $.each(imgUrls,function(idx, url){
+//                console.log(url);
+//                var img = new Image();
+//                img.src = url;
+//                img.onload = function(){
+//                    var originWidth = img.width,
+//                            originHeight = img.height,
+//                            ratio = originWidth/originHeight;
+//
+//                    var imgInfo = {
+//                        target: $(img),
+//                        width: _this.baseHeight*ratio,
+//                        height: _this.baseHeight,
+//                        ratio: ratio
+//                    };
+//                    _this.render(imgInfo);
+//                }
+//            });
+//        },
+//
+//
+//        render: function(imgInfo){
+//            var _this = this;
+//            var rowList = this.rowList,
+//                    rowWidth = 0,
+//                    rowHeight = 0,
+//                    clientWidth = this.$ct.width(),
+//                    lastImgInfo = imgInfo;
+//
+//            this.rowList.push(imgInfo);
+//
+//            $.each(rowList,function(idx, imgInfo){
+//                rowWidth += imgInfo.width;
+//                if(rowWidth  > clientWidth ){
+//                    rowList.pop();
+//                    rowWidth = rowWidth - lastImgInfo.width;
+//                    rowHeight = clientWidth * _this.baseHeight / rowWidth;
+//
+//                    _this.createRow(rowHeight);
+//                    _this.rowList = [];
+//                    _this.rowList.push(lastImgInfo);
+//                }
+//            });
+//        },
+//
+//        createRow: function(rowHeight){
+//            console.log('createRow');
+//            var $rowCt = $('<div class="img-row"></div>');
+//            $.each(this.rowList, function(idx, imgInfo){
+//                var $imgCt = $('<div class="img-box"></div>'),
+//                        $img = imgInfo.target;
+//                $img.height(rowHeight);
+//                $imgCt.append($img);
+//                $rowCt.append($imgCt);
+//            });
+//            console.log(this.$ct);
+//            this.$ct.append($rowCt);
+//
+//
+//        },
+//        getImgUrls: function(num) {
+//            var color, width, height, urls = [];
+//            for (var i = 0; i < num; i++) {
+//                color = Math.random().toString(16).substring(2, 8);
+//                width = Math.floor(Math.random() * 100 + 50);
+//                height = Math.floor(Math.random() * 30 + 50);
+//                urls.push("http://placehold.it/" + width + "x" + height + "/" + color + "/fff");
+//            }
+//            return urls;
+//        }
+//
+//    };
+//
+//
+//    var barrels = new Barrels($('.img-preview'));
+
+
+</script>
+
+
+
+</body>
+
+</html>
