@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>JS Bin</title>
+        <style>
+            .cover{
+            position: absolute;
+            top:0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491551842596&di=f5731b1bb9063af73d13f37806330537&imgtype=0&src=http%3A%2F%2Fimg.glzy8.com%2Fupfiles%2Fwww%2Fppt%2Fjpg%2F32209.jpg") center center no-repeat;
+            background-size: cover;
+            }
+            .cover:before{
+            content: '';
+            display: block;
+            width: 50%;
+            position: absolute;
+            top:0;
+            left:0;
+            bottom:0;
+            background: linear-gradient(to bottom right, rgba(0,255,0,0.2), rgba(255,0,0,0.3));
+            }
+            .cover:after{
+            content: '';
+            display: block;
+            width: 50%;
+            position: absolute;
+            top:0;
+            right:0;
+            bottom:0;
+            background: linear-gradient(to bottom left, rgba(255,0,0,0.3), rgba(0,255,0,0.2));
+                }
+
+        </style>
+    </head>
+    <body>
+        <div class="cover">
+
+        </div>
+
+    </body>
+</html>
