@@ -151,17 +151,18 @@
 
 <script src="jquery/jquery-3.1.1.js"></script>
 <script>
-    $("#btn").on("click",function(){
+   
         $.ajax({
-            url:"http://api.jirengu.com/weather.php",
-            type: "get",
+            url:"//api.jirengu.com/weather.php",
+            // url:"http://jirenguapi.applinzi.com/city.php",
+            type: "post",
             dataType:"json"
         }).done(function(ret){
             success(ret)
         }).fail(function(){
             alert("获取失败")
         })
-    });
+ 
     function success(data){
         $(".currentCity").text(data.results[0].currentCity);
         $(".todayDate").text(data.results[0].weather_data[0].date);
